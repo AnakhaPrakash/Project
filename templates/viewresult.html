@@ -1,0 +1,156 @@
+{% load static %} 
+{% block content %} 
+{% include 'header.html' %}
+
+<!-- Hero Section -->
+<div class="page-banner overlay-dark bg-image" style="background-image: url('{% static 'assets/img/bg_image_1.jpg' %}');">
+  <div class="banner-section">
+    <div class="container text-center wow fadeInUp">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+          <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/index">Home</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations Section -->
+<div class="page-section recommendations-section">
+  <div class="container">
+    <h1 class="text-center wow fadeInUp section-title">Recommendations</h1>
+
+    <div class="recommendation-box wow fadeInUp">
+      <p><strong>RESULT :</strong> {{ result.result }}</p>
+      <p><strong>DIET RECOMMENDATION :</strong> {{ recommendation.diet }}</p>
+      <p><strong>LIFESTYLE RECOMMENDATION :</strong> {{ recommendation.lifestyle }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Google Maps Section -->
+<!-- <div class="maps-container wow fadeInUp">
+  <div id="google-maps"></div>
+</div> -->
+
+<!-- App Promotion Banner -->
+<!-- <div class="page-section banner-home bg-image" style="background-image: url('{% static 'assets/img/banner-pattern.svg' %}');">
+  <div class="container py-5 py-lg-0">
+    <div class="row align-items-center">
+      <div class="col-lg-4 wow zoomIn">
+        <div class="img-banner d-none d-lg-block"> -->
+          <!-- <img src="{% static 'assets/img/mobile_app.png' %}" alt="Mobile App" class="img-fluid" /> -->
+        <!-- </div>
+      </div>
+      <div class="col-lg-8 wow fadeInRight"> -->
+        <!-- <h1 class="font-weight-normal mb-3 app-title">Get easy access to all features using One Health Application</h1>
+        <a href="#"><img src="{% static 'assets/img/google_play.svg' %}" alt="Google Play" class="store-badge" /></a>
+        <a href="#" class="ml-2"><img src="{% static 'assets/img/app_store.svg' %}" alt="App Store" class="store-badge" /></a> -->
+      <!-- </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Chatbot Floating Button -->
+<div id="chatbot-icon" onclick="toggleChatbot()">💬</div>
+
+<!-- Chatbot Box -->
+<div id="chat-container">
+  <h2>Chatbot</h2>
+  <div id="chat-messages"></div>
+  <input type="text" id="user-input" placeholder="Ask me anything..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    var userMessage = document.getElementById("user-input").value;
+    if (userMessage.trim() === "") return;
+
+    var chatMessages = document.getElementById("chat-messages");
+    chatMessages.innerHTML += `<div><b>You:</b> ${userMessage}</div>`;
+
+    fetch("{% url 'chatbot-response' %}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRFToken": "{{ csrf_token }}"
+      },
+      body: "message=" + encodeURIComponent(userMessage)
+    })
+    .then(response => response.json())
+    .then(data => {
+      chatMessages.innerHTML += `<div><b>Bot:</b> ${data.response}</div>`;
+      document.getElementById("user-input").value = "";
+    });
+  }
+
+  function toggleChatbot() {
+    var chatContainer = document.getElementById("chat-container");
+    chatContainer.style.display = (chatContainer.style.display === "none" || chatContainer.style.display === "") ? "block" : "none";
+  }
+</script>
+
+<style>
+  /* Chatbot Floating Icon */
+  #chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Chatbot Container */
+  #chat-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  #chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+
+  input {
+    width: 80%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 8px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+</style>
+
+{% include 'footer.html' %} 
+{% endblock %}

@@ -1,0 +1,81 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'assets/img/bg_image_1.jpg' %});">
+  <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
+        <h1 class="font-weight-normal">Add Recommendations</h1>
+      </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+  </div> <!-- .page-banner -->
+
+  <div class="page-section">
+    <div class="container">
+      <h1 class="text-center wow fadeInUp">Get in Touch</h1>
+
+      <form method="POST" action='addrec'>
+        {% csrf_token %}
+    
+        <!-- Severity Level Dropdown -->
+        <div class="col-sm-6 py-2 wow fadeInRight">
+            <label for="severity">Severity Level</label>
+            <select id="severity" class="form-control" name="severity">
+                <option value="No DR">No DR</option>
+                <option value="Mild DR">Mild DR</option>
+                <option value="Moderate DR">Moderate DR</option>
+                <option value="Severe DR">Severe DR</option>
+            </select>
+        </div>
+    
+        <!-- Diet Recommendation Input -->
+        <div class="col-sm-6 py-2 wow fadeInRight">
+            <label for="diet">Add Diet Recommendation</label>
+            <input type="text" id="diet" class="form-control" name="diet" placeholder="Enter diet recommendation...">
+        </div>
+    
+        <!-- Lifestyle Recommendation Input -->
+        <div class="col-6 py-2 wow fadeInUp">
+            <label for="lifestyle">Add Lifestyle Recommendation</label>
+            <input type="text" id="lifestyle" class="form-control" name="lifestyle" placeholder="Enter lifestyle recommendation...">
+        </div>
+    
+        <!-- Submit Button -->
+        <div class="col-12 py-2 wow fadeInUp">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    
+    </div>
+  </div>
+
+  <!-- <div class="maps-container wow fadeInUp">
+    <div id="google-maps"></div>
+  </div>
+
+  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
+    <div class="container py-5 py-lg-0">
+      <div class="row align-items-center">
+        <div class="col-lg-4 wow zoomIn">
+          <div class="img-banner d-none d-lg-block">
+            <img src="../assets/img/mobile_app.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
+          <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
+          <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+   <!-- .banner-home -->
+
+  {% include 'footer.html' %}
+  {% endblock %}

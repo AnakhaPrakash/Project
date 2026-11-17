@@ -1,0 +1,65 @@
+{% load static %}
+  {% block content %}
+  {% include 'header.html' %}
+  
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        alert('{{ message }}');
+      </script>
+    {% endfor %}
+  {% endif %}
+  
+  <div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'assets/img/bg_image_1.jpg' %});">
+    <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <h1 class="text-white font-weight-bold">Welcome Back</h1>
+        <p class="text-white">Login to access your account</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-section d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card shadow-lg p-4 rounded-lg wow fadeInUp">
+            <h2 class="text-center mb-4">Login</h2>
+            <form method="POST" action="logint">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="emailAddress" class="form-label">Email</label>
+                <input type="email" id="emailAddress" class="form-control" name="email" placeholder="Enter your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <div class="text-center mt-3">
+              <a href="{% url 'forget_password' %}" class="text-primary">Forgot Password?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <div class="page-section banner-home bg-image" style="background-image: url({% static 'assets/img/banner-pattern.svg' %});">
+    <div class="container py-5">
+      <div class="row align-items-center text-center">
+        <div class="col-lg-4 wow zoomIn">
+          <img src="{% static 'assets/img/mobile_app.png' %}" class="img-fluid" alt="Mobile App">
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h3 class="font-weight-normal mb-3">Get easy access to all features using our App</h3>
+          <a href="#"><img src="{% static 'assets/img/google_play.svg' %}" class="mx-2" alt="Google Play"></a>
+          <a href="#"><img src="{% static 'assets/img/app_store.svg' %}" class="mx-2" alt="App Store"></a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
+  {% include 'footer.html' %}
+  {% endblock %}

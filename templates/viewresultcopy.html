@@ -1,0 +1,175 @@
+{% comment %} {% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'assets/img/bg_image_1.jpg' %});">
+  <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
+        <h1 class="font-weight-normal">Contact</h1>
+      </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+  </div> <!-- .page-banner -->
+
+  <div class="page-section">
+    <div class="container">
+      <h1 class="text-center wow fadeInUp">Get in Touch</h1>
+
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+               
+                <th scope="col">image</th>
+                <th scope="col">result</th>
+               
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in res %}
+            <tr>
+                <td>{{i.id}}</td>
+			
+                <td><img src="../media/{{i.image}}" alt="Girl in a jacket" width="200" height="150"></td>
+				<td>{{i.result}}</td>
+             
+                
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="maps-container wow fadeInUp">
+    <div id="google-maps"></div>
+  </div>
+
+  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
+    <div class="container py-5 py-lg-0">
+      <div class="row align-items-center">
+        <div class="col-lg-4 wow zoomIn">
+          <div class="img-banner d-none d-lg-block">
+            <img src="../assets/img/mobile_app.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
+          <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
+          <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .banner-home -->
+
+  {% include 'footer.html' %}
+  {% endblock %} {% endcomment %}
+
+
+
+
+  {% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'assets/img/bg_image_1.jpg' %});">
+  <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
+        <h1 class="font-weight-normal">Contact</h1>
+      </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+  </div> <!-- .page-banner -->
+
+  <div class="page-section">
+    <div class="container">
+      <h1 class="text-center wow fadeInUp">Get in Touch</h1>
+
+      {% comment %} <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Result</th>
+                <th scope="col">Diet Recommendation</th>
+                <th scope="col">Lifestyle Recommendation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if patient %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td><img src="../media/{{ patient.image }}" alt="Result Image" width="200" height="150"></td>
+                <td>{{ patient.result }}</td>
+                <td>{{ recommendation.diet|default:"No recommendation" }}</td>
+                <td>{{ recommendation.lifestyle|default:"No recommendation" }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No results found</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table> {% endcomment %}
+
+    {% if res == "No DR" %}
+  <h1>No DR </h1>
+  <p>Diet Recommendation: Healthy Balanced Diet</p>
+  <p>Lifestyle Recommendation: Light exercise throughout the week</p>
+{% elif res == "Mild DR" %}
+  <h1>Mild DR </h1>
+  <p>Diet Recommendation: Eat more vegetables and fiber</p>
+  <p>Lifestyle Recommendation: Exercise regularly</p>
+{% elif res == "Moderate DR" %}
+  <h1>Moderate DR </h1>
+  <p>Diet Recommendation: Avoid sugary foods, follow a strict diet</p>
+  <p>Lifestyle Recommendation: Daily walking</p>
+{% else %}
+  <h1>Unknown DR Condition</h1>
+  <p>No specific recommendation available</p>
+{% endif %}
+
+
+
+
+
+
+    
+    </div>
+  </div>
+
+  <div class="maps-container wow fadeInUp">
+    <div id="google-maps"></div>
+  </div>
+
+  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
+    <div class="container py-5 py-lg-0">
+      <div class="row align-items-center">
+        <div class="col-lg-4 wow zoomIn">
+          <div class="img-banner d-none d-lg-block">
+            <img src="../assets/img/mobile_app.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
+          <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
+          <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .banner-home -->
+
+  {% include 'footer.html' %}
+  {% endblock %}

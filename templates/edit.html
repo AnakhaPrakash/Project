@@ -1,0 +1,25 @@
+{% load static %} 
+{% block content %} 
+{% include 'header.html' %}
+
+<div class="container mt-5">
+    <h2 class="text-center">Edit Recommendation</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Severity Level:</label>
+            <input type="text" name="severity_level" class="form-control" value="{{ recommendation.severity_level }}" required>
+        </div>
+        <div class="form-group">
+            <label>Diet Recommendation:</label>
+            <textarea name="diet" class="form-control" required>{{ recommendation.diet }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Lifestyle Recommendation:</label>
+            <textarea name="lifestyle" class="form-control" required>{{ recommendation.lifestyle }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
+        {% comment %} <a href="{% url 'recommendations_list' %}" class="btn btn-secondary">Cancel</a> {% endcomment %}
+    </form>
+</div>
+{% endblock %}

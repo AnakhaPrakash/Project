@@ -1,0 +1,69 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Dietician</h5>
+                <h1>Registration</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form bg-secondary rounded p-5">
+                        <div id="success"></div>
+                        <form  action="addexpert" method="POST" enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            
+                            <div class="control-group">
+                                <input type="name" class="form-control border-0 p-4" id="name" name="name" placeholder="Enter your name" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="email" class="form-control border-0 p-4" id="email" name="email" placeholder="Enter your email" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="phone" class="form-control border-0 p-4" id="phone" name="phone" placeholder="Enter your phonenumber" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="password" class="form-control border-0 p-4" id="password" name="password" placeholder="Enter your password" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="place" class="form-control border-0 p-4" id="place" name="place" placeholder="Enter your place" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="experience" class="form-control border-0 p-4" id="place" name="experience" placeholder="Enter your experience" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            
+                          
+                            <div class="control-group">
+                                <input type="file" class="form-control border-0 p-4" id="certificate" name="certificate" placeholder="certificate" required="required" />
+                                
+                            </div>
+
+                            
+                            <div class="text-center">
+                                <button class="btn btn-primary py-3 px-5" type="submit" id="Submit">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+    
+  
+</body>
+
+</html>
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,146 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+  <title>Diabetic Retinopathy</title>
+
+  <link rel="stylesheet" href="{% static 'assets/css/maicons.css' %}">
+
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static 'assets/vendor/owl-carousel/css/owl.carousel.css' %}">
+
+  <link rel="stylesheet" href="{% static 'assets/vendor/animate/animate.css' %}">
+
+  <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+</head>
+<body>
+
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
+
+  <header>
+    
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#"><span class="text-primary">Diabetic Retinopathy </span>Detection</a>
+
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupport">
+          <ul class="navbar-nav ml-auto">
+
+            {% if request.session.logint %}
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/index">Home</a>
+            </li>
+            
+            {% comment %} <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/userss">User</a>
+            </li> {% endcomment %}
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/viewuser">View User</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'viewrequest' %}">Dietician Request</a>
+            </li>
+            <a class="nav-link" href="http://127.0.0.1:8000/viewexpert">View Dietician</a>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/viewfeedback">View Feedback</a>
+            </li>
+            {% comment %} <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/expert">Add Dietician</a>
+            </li> {% endcomment %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">Logout</a>
+            </li>
+
+
+
+            {% elif request.session.uid %}
+
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/index">Home</a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/prediction">Upload</a>
+            </li>
+
+			
+			<li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/viewresult">View Result</a>
+            </li>
+
+             
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/feedback">Feedback</a>
+            </li> 
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">Logout</a>
+            </li> 
+
+
+            {% elif request.session.eid %}
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/rec">Add Recommendation</a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/viewrecomment">View Recommendation</a>
+            </li>
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/viewresults">View Result</a>
+            </li> -->
+		
+
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/logout">Logout</a>
+            </li>  
+                  
+            
+            
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/index">Home</a>
+            </li>
+			      {% comment %} <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/userss">Register</a>
+            </li> {% endcomment %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="http://127.0.0.1:8000/userss">User</a>
+                <a class="dropdown-item" href="{% url 'addexpert' %}">Dietician</a>
+              </div>
+            </li>
+            
+            <li class="nav-item active">
+              <a class="btn btn-primary ml-lg-3" href="http://127.0.0.1:8000/login">Login</a>
+            </li> 
+            
+            {% endif %}
+          </ul>
+        </div> <!-- .navbar-collapse -->
+      </div> <!-- .container -->
+    </nav>
+  </header>
+  {% endblock %}
